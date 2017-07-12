@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { TaskService } from './services/task.service';
+import { PersonaService } from './services/persona.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [TaskService]
+  providers: [PersonaService]
 })
 export class AppComponent {
-  title = 'Tasks List';
+  title = 'Arbol de Esperanza';
 }

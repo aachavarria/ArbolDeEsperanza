@@ -2,7 +2,17 @@ const express = require('express');
 const router = express.Router();
 const mongojs = require('mongojs');
 
-var db = mongojs('mongodb://yurei:Master123@ds121192.mlab.com:21192/ade',['tasks'])
+var db = mongojs('mongodb://yurei:Master123@ds121192.mlab.com:21192/ade',['personas'])
+
+// GET ALL Tasks
+router.get('/personas', (req, res, next) => {
+  db.personas.find(function(err, personas){
+    if(err){
+      res.send(err);
+    }
+    res.json(personas);
+  });
+});
 
 // GET ALL Tasks
 router.get('/tasks', (req, res, next) => {
