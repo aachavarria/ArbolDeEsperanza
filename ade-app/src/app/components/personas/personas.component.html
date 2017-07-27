@@ -1,14 +1,23 @@
 <div class="personas">
-  <div class="personas-list">
-  <table class="table">
-    <tr>
-      <th>Nombre</th>
-      <th>Email</th>
-    </tr>
-    <tr *ngFor="let persona of personas">
-      <td>{{persona.name}}</td>
-      <td>{{persona.email}}</td>
-    </tr>
-  </table>
+  <div class="personas-list" *ngIf="!form">
+    <button class="btn btn-success" type="button" name="showForm" (click)="showForm()">Agregar Nueva Persona</button>
+    <div class="search-box">
+      <input type="text" [(ngModel)]="queryString" id="search" placeholder="Filter by Name">
+    </div>
+    <table class="table">
+      <tr>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Acciones</th>
+      </tr>
+      <tr *ngFor="let persona of personas | FilterPipe: queryString">
+        <td>{{persona.name}}</td>
+        <td>{{persona.email}}</td>
+        <td><span (click)="onEdit(persona)" class="glyphicon glyphicon-edit"></span></td>
+      </tr>
+    </table>
+  </div>
+  <div class="persona" *ngIf="form || selectedPersona">
+    <app-new-persona [persona]="selectedPersona" (cancel)=onCancel($event)></app-new-persona>
   </div>
 </div>

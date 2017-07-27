@@ -14,4 +14,18 @@ export class PersonaService {
       .map(res => res.json());
   }
 
+  addPersona(persona){
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post("/api/persona",JSON.stringify(persona), {headers: headers})
+      .map(res => res.json());
+  }
+
+  updatePersona(persona){
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.put("/api/persona/"+persona._id,JSON.stringify(persona), {headers: headers})
+      .map(res => res.json());
+  }
+
 }

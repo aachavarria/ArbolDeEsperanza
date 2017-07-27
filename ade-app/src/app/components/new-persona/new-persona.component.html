@@ -1,0 +1,17 @@
+<div class="persona-form">
+  <h1>{{isNewPersona? 'Agregar Persona' : 'Actualizar Persona'}}</h1>
+  <form #personaForm="ngForm" (ngSubmit)="onSubmit(personaForm)" >
+    <div class="form-group">
+      <label for="name">Nombre:</label>
+      <input [(ngModel)]="persona.name" #name="ngModel" type="text" class="form-control" name="name" required>
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Name is required</div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input [(ngModel)]="persona.email" #email="ngModel" type="text" class="form-control" name="email" required>
+      <div [hidden]="email.valid || email.pristine" class="alert alert-danger">Email is required</div>
+    </div>
+    <button [disabled]="!personaForm.form.valid" type="submit" class="btn btn-success">{{isNewPersona? 'Agregar' : 'Actualizar'}}</button>
+    <button class="btn btn-default" type="button" name="showForm" (click)="onCancel()">Cancelar</button>
+  </form>
+</div>
